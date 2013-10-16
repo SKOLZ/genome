@@ -14,9 +14,11 @@ int main(void) {
 
 	if (adn[0] == 'A' && adn[1] == 'U' && adn[2] == 'G') {
 		int i, j = 0;
-		int iterations = (strlen(adn) / 3) - 1;
-		if (iterations % 3 != 0) {
+		int adnlen = strlen(adn);
+		int iterations = (adnlen / 3) - 1;
+		if (adnlen % 3 != 0) {
 			printf("Invalid ADN sequence - Length error");
+			return 1;
 		}
 		for (i = 0; i < iterations; i++) {
 
