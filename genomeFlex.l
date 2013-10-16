@@ -30,6 +30,7 @@ GC[A,C,T,G]	printf("A");
 GT[A,C,T,G]	printf("V");
 GG[A,C,T,G]	printf("G");
 "{-}["[0-9]+"]"	printf("\nEnd of codon - Begining of new codon from here\n");
+"{"(A|C|T|G)(((A|C|T|G)+|,)(A|C|T|G)+)?"}"	printf("--OPCION--");
 .		printf("ERROR");exit(0);
 %%
 int yywrap(void) { 
