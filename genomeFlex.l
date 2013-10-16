@@ -29,6 +29,7 @@ GA[C,T]		printf("D");
 GC[A,C,T,G]	printf("A");
 GT[A,C,T,G]	printf("V");
 GG[A,C,T,G]	printf("G");
+"{-}["[0-9]+"]"	printf("\nEnd of codon - Begining of new codon from here\n");
 .		printf("ERROR");exit(0);
 %%
 int yywrap(void) { 
