@@ -45,12 +45,17 @@ int main(void) {
 
 void parse(int position) {
 	char buffer[1024];
-	int i;
 	int j = 0;
-	for(i = position; yytext[i] != ',' || yytext[i] != '}'; i++) {
+	int i = position;
+	/*while((yytext[i] != ',') || (yytext[i] != '}')) {
+		i++;
+		buffer[j] = yytext[i];
+		j++;
+	}*/
+	for(i = position; yytext[i] != ',' && yytext[i] != '}'; i++) {
 		buffer[j++] = yytext[i];
 	}
-	while(j /3 > 0) {
+	//printf("PASE\n");
 		switch(j%3) {
 			case 0:
 				unput(yytext[position]);
@@ -59,12 +64,10 @@ void parse(int position) {
 				break;
 			case 1:
 				unput(yytext[position]);
-				unput(yytext[position+1]);
 				break;
 			case 2:
 				unput(yytext[position]);
+				unput(yytext[position+1]);
 				break;
 		}
-		j /= 3;
-	}
 }
