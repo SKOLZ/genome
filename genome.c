@@ -3,34 +3,42 @@
 #include <string.h>
 
 /* Given a DNA codon split into the 3 char parameters, returns the matching Amino acid*/
-char codonToSlc(char, char, char);
+char codonToSlc(char, char, char, int);
 
 int main(void) {
 	printf("%s", "Poneme el ADN viteh...\nADN: ");
-
 	char adn[9999];
 	scanf("%s", adn);
-	//printf("ADN: %s\n", adn);
 
 	if (adn[0] == 'A' && adn[1] == 'U' && adn[2] == 'G') {
 		int i, j = 0;
-		int adnlen = strlen(adn);
-		int iterations = (adnlen / 3) - 1;
+		int adnlen = strlen(adn) - 3;
+		int iterations = adnlen / 3;
 		if (adnlen % 3 != 0) {
 			printf("Invalid ADN sequence - Length error");
 			return 1;
 		}
-		for (i = 0; i < iterations; i++) {
 
-			char slc = codonToSlc(adn[j + 3], adn[j + 4], adn[j + 5]);
+		for (i = 0; i < iterations; i++) {
+			char first = adn[j + 3];
+			//printf("Analizing: %c\n", adn[j + 3]);
+			char second = adn[j + 4];
+			//printf("Analizing: %c\n", adn[j + 4]);
+			char third = adn[j + 5];
+			//printf("Analizing: %c\n", adn[j + 5]);
+			char slc = codonToSlc(first, second, third, iterations);
 			if (slc == '0') {
-				printf("Invalid ADN sequence - Codon error");
+				printf("Invalid ADN sequence - Codon error: %c", slc);
 				return 1;
 			} else {
 				if (slc == '1') {
 					printf("STOP\n");
 				} else {
-					printf("%c", slc);
+					if (slc == '2') {
+						printf("");
+					} else {
+						printf("%c", slc);
+					}
 				}
 			}
 			j += 3;
@@ -42,7 +50,7 @@ int main(void) {
 	return 0;
 }
 
-char codonToSlc(char first, char second, char third) {
+char codonToSlc(char first, char second, char third, int iterations) {
 	switch (first) {
 	case 'A':
 		switch (second) {
@@ -244,6 +252,21 @@ char codonToSlc(char first, char second, char third) {
 			}
 			break;
 		}
+		break;
+	case '{':
+	case '[':
+	case '1':
+	case '2':
+	case '3':
+	case '4':
+	case '5':
+	case '6':
+	case '7':
+	case '8':
+	case '9':
+	case '0':
+		iterations--;
+		return '2';
 		break;
 	}
 	return '0';
