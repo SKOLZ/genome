@@ -1,10 +1,14 @@
 %{
         #include <stdio.h>
+	#include <time.h>
 	void parse(int position);
+	void startTimer(void);
+	void stopTimer(void);
+	clock_t tic;
 %}
 
 %%
-^AUG		printf("");
+^AUG		startTimer();
 AA[A,G] 	printf("K");
 AA[C,T] 	printf("N");
 AC[A,C,T,G]	printf("T");
@@ -17,12 +21,12 @@ CA[C,T]		printf("H");
 CC[A,C,T,G]	printf("P");
 CT[A,C,T,G]	printf("L");
 CG[A,C,T,G]	printf("R");
-TA[A,G]$	printf("[STOP]");
+TA[A,G]$	printf("[STOP]");stopTimer();
 TA[C,T]		printf("Y");
 TC[A,C,T,G]	printf("S");
 TT[A,G]		printf("L");
 TT[C,T]		printf("F");
-TGA$		printf("[STOP]");
+TGA$		printf("[STOP]");stopTimer();
 TG[C,T]		printf("C");
 TGG		printf("W");
 GA[A,G]		printf("E");
@@ -35,15 +39,32 @@ GG[A,C,T,G]	printf("G");
 "{"(A|C|T|G)(((A|C|T|G)+|,)*(A|C|T|G))?"}"      parse(1);
 		irintf("-in-");
 %%
-int yywrap(void) { 
+int
+yywrap(void) { 
         return 1;
 }
-int main(void) {
+
+int
+main(void) {
         yylex();
         return 0;
 }
 
-void parse(int position) {
+void
+startTimer(void) {
+	tic = clock();
+	printf("\nTime start = %f\n", tic);
+}
+
+void
+stopTimer(void) {
+	clock_t toc = clock();
+	printf("\nTime stop = %f\n", (double)toc);
+	printf("\nElapsed: %f seconds\n", (double)(toc - tic) / CLOCKS_PER_SEC);
+}
+
+void
+parse(int position) {
 	char buffer[1024];
 	int j = 0;
 	int i = position;

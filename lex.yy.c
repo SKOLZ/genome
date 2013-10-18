@@ -515,8 +515,12 @@ char *yytext;
 #line 1 "genomeFlex.l"
 #line 2 "genomeFlex.l"
         #include <stdio.h>
+	#include <time.h>
 	void parse(int position);
-#line 520 "lex.yy.c"
+	void startTimer(void);
+	void stopTimer(void);
+	clock_t tic;
+#line 524 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -706,9 +710,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 6 "genomeFlex.l"
+#line 10 "genomeFlex.l"
 
-#line 712 "lex.yy.c"
+#line 716 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -794,67 +798,67 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 7 "genomeFlex.l"
-printf("");
+#line 11 "genomeFlex.l"
+startTimer();
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 8 "genomeFlex.l"
+#line 12 "genomeFlex.l"
 printf("K");
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 9 "genomeFlex.l"
+#line 13 "genomeFlex.l"
 printf("N");
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 10 "genomeFlex.l"
+#line 14 "genomeFlex.l"
 printf("T");
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 11 "genomeFlex.l"
+#line 15 "genomeFlex.l"
 printf("I");
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 12 "genomeFlex.l"
+#line 16 "genomeFlex.l"
 printf("M");
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 13 "genomeFlex.l"
+#line 17 "genomeFlex.l"
 printf("R");
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 14 "genomeFlex.l"
+#line 18 "genomeFlex.l"
 printf("S");
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 15 "genomeFlex.l"
+#line 19 "genomeFlex.l"
 printf("Q");
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 16 "genomeFlex.l"
+#line 20 "genomeFlex.l"
 printf("H");
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 17 "genomeFlex.l"
+#line 21 "genomeFlex.l"
 printf("P");
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 18 "genomeFlex.l"
+#line 22 "genomeFlex.l"
 printf("L");
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 19 "genomeFlex.l"
+#line 23 "genomeFlex.l"
 printf("R");
 	YY_BREAK
 case 14:
@@ -862,27 +866,27 @@ case 14:
 (yy_c_buf_p) = yy_cp -= 1;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 20 "genomeFlex.l"
-printf("[STOP]");
+#line 24 "genomeFlex.l"
+printf("[STOP]");stopTimer();
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 21 "genomeFlex.l"
+#line 25 "genomeFlex.l"
 printf("Y");
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 22 "genomeFlex.l"
+#line 26 "genomeFlex.l"
 printf("S");
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 23 "genomeFlex.l"
+#line 27 "genomeFlex.l"
 printf("L");
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 24 "genomeFlex.l"
+#line 28 "genomeFlex.l"
 printf("F");
 	YY_BREAK
 case 19:
@@ -890,70 +894,70 @@ case 19:
 (yy_c_buf_p) = yy_cp -= 1;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 25 "genomeFlex.l"
-printf("[STOP]");
+#line 29 "genomeFlex.l"
+printf("[STOP]");stopTimer();
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 26 "genomeFlex.l"
+#line 30 "genomeFlex.l"
 printf("C");
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 27 "genomeFlex.l"
+#line 31 "genomeFlex.l"
 printf("W");
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 28 "genomeFlex.l"
+#line 32 "genomeFlex.l"
 printf("E");
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 29 "genomeFlex.l"
+#line 33 "genomeFlex.l"
 printf("D");
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 30 "genomeFlex.l"
+#line 34 "genomeFlex.l"
 printf("A");
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 31 "genomeFlex.l"
+#line 35 "genomeFlex.l"
 printf("V");
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 32 "genomeFlex.l"
+#line 36 "genomeFlex.l"
 printf("G");
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 33 "genomeFlex.l"
+#line 37 "genomeFlex.l"
 printf("");
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 34 "genomeFlex.l"
+#line 38 "genomeFlex.l"
 printf("\nEnd of codon - Begining of new codon from here\n");
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 35 "genomeFlex.l"
+#line 39 "genomeFlex.l"
 parse(1);
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 36 "genomeFlex.l"
+#line 40 "genomeFlex.l"
 
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 37 "genomeFlex.l"
+#line 41 "genomeFlex.l"
 ECHO;
 	YY_BREAK
-#line 957 "lex.yy.c"
+#line 961 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1954,18 +1958,35 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 37 "genomeFlex.l"
+#line 41 "genomeFlex.l"
 
 
-int yywrap(void) { 
+int
+yywrap(void) { 
         return 1;
 }
-int main(void) {
+
+int
+main(void) {
         yylex();
         return 0;
 }
 
-void parse(int position) {
+void
+startTimer(void) {
+	tic = clock();
+	printf("\nTime start = %f\n", tic);
+}
+
+void
+stopTimer(void) {
+	clock_t toc = clock();
+	printf("\nTime stop = %f\n", (double)toc);
+	printf("\nElapsed: %f seconds\n", (double)(toc - tic) / CLOCKS_PER_SEC);
+}
+
+void
+parse(int position) {
 	char buffer[1024];
 	int j = 0;
 	int i = position;
