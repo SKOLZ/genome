@@ -1,7 +1,6 @@
 %{
         #include <stdio.h>
-	void parse(int position);
-
+	void parse();
 	long double position = 0;
 	int orderMatters = 1;
 %}
@@ -33,6 +32,7 @@ GA[C,T]		{putchar('D');position++;}
 GC[A,C,T,G]	{putchar('A');position++;}
 GT[A,C,T,G]	{putchar('V');position++;}
 GG[A,C,T,G]	{putchar('G');position++;}
+STOP		;
 "{-}"
 "["[0-9]+"]"	;
 "{-}["[0-9]+"]"	printf("\nEnd of codon - Begining of new codon from here\n");
