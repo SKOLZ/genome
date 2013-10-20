@@ -62,23 +62,30 @@ void parse() {
 		unput(yytext[i]);
 		i++;
 	}
-
+	printf("%d characters before {\n", i);
 	//get inside the {} and set the start
 	i++;
 	beginingElem = i;
 
-	//get the legth from the first input from inside de {}
-	while(yytext[i] != ',' && yytext[i] != '}'){
-		firstElemLength++;
-		
+	int j = 0;
+	for(j = 0; j < yyleng;j++){
+	printf("%c\n", yytext[j]);
 	}
 
+	/*
+	//get the length from the first input from inside de {}
+	while(yytext[i] != ',' && yytext[i] != '}'){
+		firstElemLength++;
+		i++;
+	}
+	printf("first item length is %d \n", firstElemLength);
+	
 	//parse to unput the elements inside 
 	while (firstElemLength > 0) {
-		unput(beginingElem[i]);
+		unput(yytext[beginingElem]);
 		beginingElem++;
 		firstElemLength--;
-	}
+	}*/
 }
 
 void func() {
