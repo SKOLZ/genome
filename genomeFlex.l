@@ -56,36 +56,35 @@ void parse() {
 	int firstElemLength = 0;
 	int i = 0;
 	int beginingElem;
+	int lettersBefore = 0
+	char buffer[1024];
 
-	//unput the letters before the { to be used later
-	while(yytext[i] != '{'){
-		unput(yytext[i]);
-		i++;
+	//get the amount of letters before the { to be used later
+	while(yytext[lettersBefore] != '{'){
+		lettersBefore++;
 	}
-	printf("%d characters before {\n", i);
+
 	//get inside the {} and set the start
-	i++;
+	i = lettersBefore + 1;
 	beginingElem = i;
 
-	int j = 0;
-	for(j = 0; j < yyleng;j++){
-	printf("%c\n", yytext[j]);
-	}
-
-	/*
 	//get the length from the first input from inside de {}
 	while(yytext[i] != ',' && yytext[i] != '}'){
+		buffer[firstElemLength] = yytext[i];			
 		firstElemLength++;
 		i++;
 	}
-	printf("first item length is %d \n", firstElemLength);
 	
 	//parse to unput the elements inside 
-	while (firstElemLength > 0) {
-		unput(yytext[beginingElem]);
+	for(i=0 ; i<lettersBefore ; i++) {
+		unput(yytext[i]);
+	}	
+	i=0;
+	while (i<firstElemLength) {
+		unput(buffer[i]);
 		beginingElem++;
-		firstElemLength--;
-	}*/
+		i++;
+	}
 }
 
 void func() {
