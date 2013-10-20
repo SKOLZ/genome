@@ -1,12 +1,13 @@
 %{
         #include <stdio.h>
+	#include <stdlib.h>
 	void parse();
 	void func();
 	int getpos();
 	long double position = 0;
 	int orderMatters = 1;
 %}
-
+flex genomeFlex.l && gcc lex.yy.c -o genomeFlex -lfl
 %%
 ^AUG								;
 AA[A,G] 							{putchar('K');position+=3;}
@@ -42,7 +43,6 @@ GG[A,C,T,G]							{putchar('G');position+=3;}
 TGA$								;
 TA[A,G]$							;
 STOP								;
-.								{printf("invalid DNA"); return;}
 %%
 int yywrap(void) {
 	return 1;
@@ -56,7 +56,7 @@ void parse() {
 	int firstElemLength = 0;
 	int i = 0;
 	int beginingElem;
-	int lettersBefore = 0
+	int lettersBefore = 0;
 	char buffer[1024];
 
 	//get the amount of letters before the { to be used later
@@ -88,6 +88,8 @@ void parse() {
 }
 
 void func() {
+	printyyetxt();
+
 	if (!orderMatters) {
 		orderMatters = 1;
 		position = getpos();
@@ -99,5 +101,18 @@ void func() {
 }
 
 int getpos() {
-	return 1;
+	char number[1024];
+	int i;	
+	for(i = 0; i < yyleng-1;i++){
+		number[i] = yytext[i+1];
+	}
+	return atoi(number);
 }
+
+void printyyetxt(){
+	int i;
+	for(i = 0; i < yyleng; i++){
+		printf("%c", yytext[i]);
+	}
+}
+
