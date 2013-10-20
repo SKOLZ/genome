@@ -6,7 +6,7 @@
 %}
 
 %%
-^AUG		printf("");
+^AUG		;
 AA[A,G] 	{putchar('K');position++;}
 AA[C,T] 	{putchar('N');position++;}
 AC[A,C,T,G]	{putchar('T');position++;}
@@ -19,12 +19,10 @@ CA[C,T]		{putchar('H');position++;}
 CC[A,C,T,G]	{putchar('P');position++;}
 CT[A,C,T,G]	{putchar('L');position++;}
 CG[A,C,T,G]	{putchar('R');position++;}
-TA[A,G]$	printf("[STOP]");
 TA[C,T]		{putchar('Y');position++;}
 TC[A,C,T,G]	{putchar('S');position++;}
 TT[A,G]		{putchar('L');position++;}
 TT[C,T]		{putchar('F');position++;}
-TGA$		printf("[STOP]");
 TG[C,T]		{putchar('C');position++;}
 TGG		{putchar('W');position++;}
 GA[A,G]		{putchar('E');position++;}
@@ -32,6 +30,8 @@ GA[C,T]		{putchar('D');position++;}
 GC[A,C,T,G]	{putchar('A');position++;}
 GT[A,C,T,G]	{putchar('V');position++;}
 GG[A,C,T,G]	{putchar('G');position++;}
+TGA$		;
+TA[A,G]$	;
 STOP		;
 "{-}"
 "["[0-9]+"]"	;
