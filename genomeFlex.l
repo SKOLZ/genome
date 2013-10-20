@@ -1,9 +1,12 @@
 %{
         #include <stdio.h>
 	#include <stdlib.h>
+
 	void parse();
 	void func();
 	int getpos();
+	void printyyetxt();
+
 	long double position = 0;
 	int orderMatters = 1;
 %}
