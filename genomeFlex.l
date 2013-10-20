@@ -41,7 +41,7 @@ GG[A,C,T,G]							{putchar('G');position+=3;}
 "{"(A|C|T|G)(((A|C|T|G)+|,)*(A|C|T|G))?"}"      		parse();
 (A|C|T|G)"{"(A|C|T|G)(((A|C|T|G)+|,)*(A|C|T|G))?"}" 		parse();
 (A|C|T|G)(A|C|T|G)"{"(A|C|T|G)(((A|C|T|G)+|,)*(A|C|T|G))?"}"	parse();
-"{-}*"								{orderMatters = 0;}
+"{-}*"								{printf("\n");orderMatters = 0;}
 "{"(A|C|T|G)(((A|C|T|G)+|,)*(A|C|T|G))?"}*" 			{orderMatters = 0;}
 TGA$								;
 TA[A,G]$							;
@@ -91,8 +91,6 @@ void parse() {
 }
 
 void func() {
-	printyyetxt();
-
 	if (!orderMatters) {
 		orderMatters = 1;
 		position = getpos();
