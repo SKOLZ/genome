@@ -6,6 +6,7 @@
 	void func();
 	int getpos();
 	void printyyetxt();
+	int validateStart();
 
 	long double position = 0;
 	int orderMatters = 1;
@@ -36,25 +37,39 @@ GA[C,T]								{putchar('D');position+=3;}
 GC[A,C,T,G]							{putchar('A');position+=3;}
 GT[A,C,T,G]							{putchar('V');position+=3;}
 GG[A,C,T,G]							{putchar('G');position+=3;}
-"{-}"								printf("\n");
+"{-}"								printf("\n--End of codon, starts new codon from here--\n");
 "["[0-9]+"]"							func();
 "{"(A|C|T|G)(((A|C|T|G)+|,)*(A|C|T|G))?"}"      		parse();
 (A|C|T|G)"{"(A|C|T|G)(((A|C|T|G)+|,)*(A|C|T|G))?"}" 		parse();
 (A|C|T|G)(A|C|T|G)"{"(A|C|T|G)(((A|C|T|G)+|,)*(A|C|T|G))?"}"	parse();
-"{-}*"								{orderMatters = 0;}
+"{-}*"								{orderMatters = 0;printf("\n--End of codon, starts new codon from here--\n");}
 "{"(A|C|T|G)(((A|C|T|G)+|,)*(A|C|T|G))?"}*" 			{orderMatters = 0;}
-TGA$								;
-TA[A,G]$							;
-STOP								;
+A | C | T | G							{printf("\n--junkDNA--\n");return 0;}
+TGA$								return 0;
+TA[A,G]$							return 0;
+STOP								return 0;
+.								return -1;
+<<EOF>>     							return -1;
+\n								return -1;
 %%
 int yywrap(void) {
 	return 1;
 }
 int main(void) {
-	yylex();
+	if(validateStart() != 0 || yylex() != 0){
+		printf("\n----------\nInvalid DNA\n----------\n");
+		return -1;
+	}
 	return 0;
 }
 
+int validateStart() {
+	char buff[4]={'\0'};
+	yyin = stdin;
+	fread(buff, sizeof(char), 3, yyin);
+	return strcmp(buff, "AUG");
+}
+	
 void parse() {
 	int firstElemLength = 0;
 	int i = 0;
@@ -79,19 +94,18 @@ void parse() {
 	}
 	
 	//parse to unput the elements inside 
-	for(i=0 ; i<lettersBefore ; i++) {
-		unput(yytext[i]);
-	}	
-	i=0;
-	while (i<firstElemLength) {
-		unput(buffer[i]);
-		beginingElem++;
-		i++;
+	while (firstElemLength>0) {
+		
+		unput(buffer[firstElemLength-1]);
+		firstElemLength--;
 	}
+	while(lettersBefore>0) {
+		unput(yytext[lettersBefore-1]);
+		lettersBefore--;
+	}	
 }
 
 void func() {
-	printyyetxt();
 
 	if (!orderMatters) {
 		orderMatters = 1;
