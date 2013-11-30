@@ -43,7 +43,7 @@ GG[A,C,T,G]							{putchar('G');position+=3;}
 (A|C|T|G)(A|C|T|G)"{"(A|C|T|G)(((A|C|T|G)+|,)*(A|C|T|G))?"}"	parse();
 "{-}*"								{orderMatters = 0;printf("\n--End of codon, starts new codon from here--\n");}
 "{"(A|C|T|G)(((A|C|T|G)+|,)*(A|C|T|G))?"}*" 			{orderMatters = 0;}
-A | C | T | G							{printf("\n--junkDNA--\n");return 0;}
+A | C | T | G							{printf("\n--junkDNA--\n");}
 TGA$								return 0;
 TA[A,G]$							return 0;
 STOP								return 0;
