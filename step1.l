@@ -11,7 +11,7 @@
 	long double position = 0;
 	int orderMatters = 1;
 %}
-flex genomeFlex.l && gcc lex.yy.c -o genomeFlex -lfl
+flex step1.l && gcc lex.yy.c -o step1 -lfl
 %%
 AA[A,G] 							{putchar('K');position+=3;}
 AA[C,T] 							{putchar('N');position+=3;}
@@ -36,6 +36,8 @@ GA[C,T]								{putchar('D');position+=3;}
 GC[A,C,T,G]							{putchar('A');position+=3;}
 GT[A,C,T,G]							{putchar('V');position+=3;}
 GG[A,C,T,G]							{putchar('G');position+=3;}
+TGA								return 0;
+TA[A,G]								return 0;
 "{-}"								printf("\n--End of codon, starts new codon from here--\n");
 "["[0-9]+"]"							func();
 "{"(A|C|T|G)(((A|C|T|G)+|,)*(A|C|T|G))?"}"      		parse();
@@ -44,8 +46,6 @@ GG[A,C,T,G]							{putchar('G');position+=3;}
 "{-}*"								{orderMatters = 0;printf("\n--End of codon, starts new codon from here--\n");}
 "{"(A|C|T|G)(((A|C|T|G)+|,)*(A|C|T|G))?"}*" 			{orderMatters = 0;}
 A | C | T | G							{printf("\n--junkDNA--\n");}
-TGA$								return 0;
-TA[A,G]$							return 0;
 STOP								return 0;
 .								return -1;
 <<EOF>>     							return -1;
