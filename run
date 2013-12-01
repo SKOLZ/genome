@@ -1,0 +1,4 @@
+echo "Decoding genome..."
+./step1 < $1  > step2input
+./step2 < step2input > step3input
+sed -i '$s/.$//' step3input
