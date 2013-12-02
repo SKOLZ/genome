@@ -3,7 +3,7 @@ genome
 
 Execute:
 
-first run te makefile: make
+first run the makefile: make
 
 then change DetermineSpecies.jar permissions: chmod 777 DetermineSpecies.jar
 
