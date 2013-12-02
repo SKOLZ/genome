@@ -4,4 +4,4 @@ echo "Decoding genome..."
 sed -i '$s/.$//' step3input
 ./step3 < step3input > step4input
 sed -i '$s/.$//' step4input
-java DetermineSpecies.java < step4input
+./DetermineSpecies.jar step4input
