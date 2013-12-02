@@ -1,0 +1,35 @@
+﻿Informe "Compilador Secuenciador de Genomas"
+
+Integrantes:
+
+*Federico Elli
+*German Romarion
+*Gabriel Zanzotti
+
+Introducción
+------------
+
+Se nos solicito realizar un compilador que permita analizar nucleotidos, transformarlos primero en aminoacidos, luego los aminoacidos en proteínas, luego las proteínas en fenotipos y a partir de los fenotipos determinar la especie correspondiente.
+
+Implementación
+--------------
+
+Con la idea de resolverlo de la forma mas eficiente posible decidimos separar en 4 pasos las transformaciones. En el primer paso utilizamos el trabajo practico 1 para convertir los nucleotidos a aminoacidos. A continuación concatenamos su salida con un segundo programa en Lex el cual se encarga de transformar los aminoacidos a las proteínas correspondientes.
+Luego creamos un tercer programa en Lex para poder transformar las proteínas a fenotipos y finalmente para relacionar los fenotipos con las distintas especies decidimos crear una clase de java para realizar las validaciones correspondientes y determinar la especie.
+
+Nuevos programas de Lex
+-----------------------
+
+Los programas "step2" y "step3" hechos en lex fueron los que creamos para realizar las transformaciones de aminoacidos a proteínas (step2) y de proteínas a fenotipos (step3). Estos programas son simples y hacen un mapeo de secuencias de caracteres para realizar las transformaciones necesarias.
+
+Programa en Java
+----------------
+
+El programa en Java fue creado para validar las especies. Tuvimos en cuenta la posibilidad de que una entrada no presente todos los fenotipos de la especie pero si que todos sus fenotipos pertenezcan a esta. En este caso Decidimos mostrar el porcentaje de fenotipos que contiene la entrada respecto a la especie. También tuvimos en cuenta que el orden de los fenotipos es importante para determinar la especie y es por esto que nuestra implementación lo contempla.
+
+Conclusiones
+------------
+
+Consideramos que nuestra implementación podría haber sido notablemente mas veloz si las especies presentaran una coincidencia del 100% en todos los casos ya que si esto ocurriese nuestro programa en java podría haberse representado como un cuarto programa en Lex. Mas allá de esto también creemos que una implementación en C de este ultimo paso seria mas eficiente pero el manejo de memoria con los arreglos de fenotipos resultaba mucho mas simple realizarla en Java y por eso optamos por 
+esta opción.
+
